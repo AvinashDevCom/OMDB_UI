@@ -14,8 +14,4 @@
 const MoviesDetails = defineAsyncComponent(
   () => import("~/components/movies/moviesDetail.vue")
 );
-
-
-
-const route = useRoute();
 </script>

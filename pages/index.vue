@@ -128,6 +128,8 @@ watch(pagination.value, (newVal) => {
 });
 const searchTrigger = debounce(async () => {
   reloadFNC();
+  vmTitle.value = "";
+  vmYear.value = "";
 }, 500);
 function paginationFNC(params: any) {
   pagination.value.page = params?.page;

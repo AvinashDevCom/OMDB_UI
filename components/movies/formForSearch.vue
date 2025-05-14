@@ -76,7 +76,6 @@
                   width="100%"
                   color="black"
                   type="submit"
-                  :disabled="enableSubmitBTN"
                   @click="isActive.value = false"
                 >
                   Submit
@@ -91,6 +90,7 @@
 </template>
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
+import { toastStore } from "~/store/toast";
 const { lgAndUp } = useDisplay();
 
 const rules = [
@@ -113,9 +113,15 @@ const emits = defineEmits<{
   (event: "clear"): void;
 }>();
 
+const snackbar = toastStore();
 //Function
 function submitParams() {
+  if (enableSubmitBTN.value) {
+    snackbar.setError("Fill any one of the fields");
+    return;
+  }
   emits("submit");
+  
 }
 function clearParams() {
   searchTitle.value = "";
