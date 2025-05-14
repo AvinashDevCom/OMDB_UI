@@ -1,93 +1,137 @@
-1.OMDB API has been used cause TMDB API or it websites was down
+# 🎬 Movie Finder App (Nuxt 3 + Vue 3 + Vuetify 3 + OMDB API)
 
-Search Functionality:
-a. Title and Year is given as per it lis will be searched
-b. User can click on the "Search Movie" popup will be open and "clear" & "submit" button will be there wil text field
-c. Both field validation are applied when one of is filled then actions button will be enabled to do it respective action.
-d.Button clear will clear field and submit will close the popup and reload the list according to search parama
+This project is a movie search and favorites web app built using **Nuxt 3**, **Vue 3 Composition API**, and **Vuetify 3**. It fetches data from the **OMDB API** and allows users to search movies by title and year, view detailed information, and manage a favorites list.
 
-Ui Details
-1.Home Page
-a.Has search button as described above
-b. has data table with headers Id,Title, Release year & action button reload button to reload the list on present stage.
-c. on the right bottom corner of the table there is pagination in table footer
-in this items per page are there as per visible options.
-d. according to the click of the next pagination will be towards next number and vice versa for backward if they user have not reached to end of both respectively.
-e.There is APP bar which has home icon which has route to index page ('/'), on the right corner of bar watchlist icon to route to favorites Page("favorites").
-f. on the watch list icon there is batch which will show count of item which liked to be in favorites.
+---
 
-g. On teh table there button on right hand side of each row which have '+' sign that movies need to be add in favorites and '-' for vice versa.
+## 🚀 Features
 
-2. Movie Details
-   this page which open when user wil click on home/favorites page table row.
-   a.there are breadcrumbs on clicking on "movies" it will direct to list page .
-   b.On desktop view there will be image on left side and details on the right side with cols "4" and "8" respectively.
-   c.on the right side heading ,Year, rating , overview and same button which is their in the table of index in movies List.
+### 1. Movie Search
+- Powered by OMDB API due to TMDB being temporarily unavailable.
+- Search popup allows filtering by **title** and **year**.
+- Validations ensure at least one field is filled.
+- Includes **Clear** and **Submit** buttons.
 
-3.Favorites Page
-a. it will show the list which their the store showing Title, Release Year.
-b. in it their will be button to remove that particular row or data from favorites.
-c.There is search field on the top left whic search on computed the list on client side.
+### 2. UI Overview
 
-4. Routing and Navigation
-   a.Home:-"/"
-   b.Movies Details page:-"/movies/[id]"
-   c.Favorites:-'/favorites'
+#### 🏠 Home Page (`/`)
+- Search button opens movie search modal.
+- Data table displays:
+  - `Id`, `Title`, `Release Year`, and an action column.
+- Pagination supported at the bottom-right of the table.
+- Reload button to refresh the current list.
+- **App Bar**:
+  - Home icon routes to `/`.
+  - Watchlist icon routes to `/favorites` with a badge showing favorite count.
+- Table action buttons:
+  - `+` to add to favorites.
+  - `-` to remove from favorites.
 
-5. Form Handling
-   a.Feature: Implement a search form with multiple fields (title, year) and validation.(genre is not provided by OMDB).
-   b.Behavior:
-   Ensure at least one field is filled before allowing submission.
-   Display user-friendly error messages for invalid submissions.
+#### 🎞 Movie Details Page (`/movies/[id]`)
+- Breadcrumb for navigation (`Movies > Detail`).
+- Responsive layout:
+  - Left: Movie poster (4 columns).
+  - Right: Title, Year, Rating, Overview, and favorites action button (8 columns).
 
-6. User Interface & Experience all page are responsive to mobile and desktop view
+#### ⭐ Favorites Page (`/favorites`)
+- Displays list of favorited movies with title and release year.
+- Each row includes a remove button.
+- Search input (client-side filtering).
 
-Technical Application
+---
 
-1.Nuxt3 with it's "defineAsyncComponent" "fetch" "auto Imports","useAsyncData" using store to fill content in global snack bar.
-2.using composables in nuxt3, plugins.
+## 🔁 Routing and Navigation
 
-Vue3 with it's composition API it suspense
+| Page          | Path               |
+|---------------|--------------------|
+| Home          | `/`                |
+| Movie Details | `/movies/[id]`     |
+| Favorites     | `/favorites`       |
 
-Form Handling
-a. it made sure with using defineModal declaring model
-b.using emit methods to call the list Function
+---
 
-Typescript support implemented
-in this api response has been recognized and interface are been set according to it.
-each props, variable, modal, function , and computed function it type has been assign so to have less edge cases.
+## 🧩 Form Handling
 
-How use APP
-a. After pulling the for github refer to file ".env.example"
-b. then create .env file in root directories copy/paste the code from ".env.example"
-c. then finally "npm i " followed by npm run dev
-d. node shall be above 18.0v
+- Fields: `title`, `year` (genre not supported by OMDB).
+- Validations:
+  - At least one field required.
+  - Button disabled until condition met.
+  - Clear resets fields, Submit triggers API fetch.
 
-Vuetify 3 has been utilized for to design responsive page for the application
+---
 
-Testing
-Automated unit and integration tests have not been implemented in this submission, as the focus was on completing the core functionality and UI/UX requirements within the given timeline.
-However, the codebase is structured in a way that supports future testing using tools like:
-Vitest or Jest (for running tests)
-Vue Test Utils (for component testing)
+## 📱 User Interface & Experience
+
+- Fully responsive across mobile and desktop.
+- Built with **Vuetify 3** for modern design and grid system.
+
+---
+
+## ⚙️ Technical Stack
+
+- **Nuxt 3** with:
+  - `defineAsyncComponent`
+  - `useAsyncData`
+  - Auto Imports
+- **Vue 3 Composition API** and Suspense
+- **Composables** for modular logic
+- **Plugins** for reusable functionality
+- **Pinia Store** used for global snackbars and favorite tracking
+- **TypeScript** used throughout:
+  - Typed API responses and interfaces
+  - Strong typing for props, emits, computed, etc.
+
+---
+
+## 🧪 Testing
+
+Automated tests have **not been implemented** in this submission due to project timeline constraints.
+
+However, the codebase is structured for easy future integration using:
+- **Vitest** or **Jest** for unit/integration testing
+- **Vue Test Utils** for component testing
+
+---
+
+## 🔌 OMDB API
+
+### 🔗 Base URL
+
+
 
 OMDB API Utilized
 API Endpoint
+--
 Base URL: https://www.omdbapi.com/
-Search Endpoint: /search/movie?apikey={your_api_key}&s=${title}&y=${year}&page=${page}
- Movie Details: /movie/{movie_id}?apikey={your_api_key}&i=${moviesId}
+--
 
+Search Endpoint: /search/movie?apikey={your_api_key}&s=${title}&y=${year}&page=${page}
+
+
+--
+ Movie Details: /movie/{movie_id}?apikey={your_api_key}&i=${moviesId}
+--
 example
 
 {
+   --
 "Search": [
+
 {
+
 "Title": "The Matrix",
+
 "Year": "1999",
+
 "imdbID": "tt0133093",
+
 "Type": "movie",
+
 "Poster": "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg"
+
 },],
+
 "totalResults": "101",
+
 "Response": "True"
 }
